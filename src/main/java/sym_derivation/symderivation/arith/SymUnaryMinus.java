@@ -3,6 +3,7 @@ package sym_derivation.symderivation.arith;
 import java.util.HashMap;
 
 import sym_derivation.symderivation.SymFunction;
+import sym_derivation.symderivation.constant.SymZero;
 
 public class SymUnaryMinus extends SymFunction{
 	SymFunction arg;
@@ -22,7 +23,12 @@ public class SymUnaryMinus extends SymFunction{
 	}
 
 	public SymFunction diff(String var) {
-		return new SymUnaryMinus(arg.diff(var));
+		SymFunction dif = arg.diff(var);
+		if(dif instanceof SymZero) {
+			return new SymZero();
+		}
+		
+		return new SymUnaryMinus(dif);
 	}
 
 }

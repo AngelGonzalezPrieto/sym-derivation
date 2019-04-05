@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import sym_derivation.symderivation.SymFunction;
 import sym_derivation.symderivation.arith.SymUnaryMinus;
+import sym_derivation.symderivation.constant.SymZero;
 import sym_derivation.symderivation.arith.SymProd;
 
 public class SymExp extends SymFunction{	
@@ -24,6 +25,11 @@ public class SymExp extends SymFunction{
 	}
 
 	public SymFunction diff(String var) {
-		return new SymProd(new SymExp(arg), arg.diff(var));
+		SymFunction dif = arg.diff(var);
+		if(dif instanceof SymZero) {
+			return new SymZero();
+		}
+		
+		return new SymProd(new SymExp(arg), dif);
 	}
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import sym_derivation.symderivation.SymFunction;
+import sym_derivation.symderivation.constant.SymZero;
 import sym_derivation.symderivation.trig.SymCos;
 
 public class SymSum extends SymFunction {
@@ -27,6 +28,19 @@ public class SymSum extends SymFunction {
 	}
 
 	public SymFunction diff(String var) {
-		return new SymSum(arg1.diff(var), arg2.diff(var));
+		SymFunction dif1 = arg1.diff(var);
+		SymFunction dif2 = arg2.diff(var);
+		
+		if(dif1 instanceof SymZero && dif2 instanceof SymZero) {
+			return new SymZero();
+		}
+		else if(dif1 instanceof SymZero) {
+			return dif2;
+		}
+		else if(dif2 instanceof SymZero) {
+			return dif1;
+		}
+		
+		return new SymSum(dif1, dif2);
 	}
 }

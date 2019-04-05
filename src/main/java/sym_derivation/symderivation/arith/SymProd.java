@@ -3,6 +3,7 @@ package sym_derivation.symderivation.arith;
 import java.util.HashMap;
 
 import sym_derivation.symderivation.SymFunction;
+import sym_derivation.symderivation.constant.SymZero;
 
 public class SymProd extends SymFunction{
 	SymFunction arg1, arg2;
@@ -24,8 +25,21 @@ public class SymProd extends SymFunction{
 	}
 
 	public SymFunction diff(String var) {
-		return new SymSum(new SymProd(arg1.diff(var), arg2),
-				new SymProd(arg1, arg2.diff(var)));
+		SymFunction dif1 = arg1.diff(var);
+		SymFunction dif2 = arg2.diff(var);
+		
+		if(dif1 instanceof SymZero && dif2 instanceof SymZero) {
+			return new SymZero();
+		}
+		else if(dif1 instanceof SymZero) {
+			return new SymProd(arg1, dif2);
+		}
+		else if(dif2 instanceof SymZero) {
+			return new SymProd(dif1, arg2);
+		}
+		
+		return new SymSum(new SymProd(dif1, arg2),
+				new SymProd(arg1, dif2));
 	}
 
 }

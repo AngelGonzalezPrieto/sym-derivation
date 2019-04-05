@@ -40,8 +40,12 @@ public class SymPow extends SymFunction{
 					new SymProd(arg, arg.diff(var)));
 		}
 		
+		SymFunction dif = arg.diff(var);
+		if(dif instanceof SymZero) {
+			return new SymZero();
+		}
 		return new SymProd(new SymConstant(pow),
-				new SymProd(new SymPow(arg, pow-1), arg.diff(var)));
+				new SymProd(new SymPow(arg, pow-1), dif));
 	}
 
 }
