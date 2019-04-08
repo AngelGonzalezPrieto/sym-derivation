@@ -3,11 +3,10 @@ package sym_derivation.symderivation.trig;
 import java.util.HashMap;
 
 import sym_derivation.symderivation.SymFunction;
-import sym_derivation.symderivation.arith.SymUnaryMinus;
 import sym_derivation.symderivation.constant.SymOne;
 import sym_derivation.symderivation.constant.SymZero;
 import sym_derivation.symderivation.arith.SymInv;
-import sym_derivation.symderivation.arith.SymPow;
+import sym_derivation.symderivation.arith.SymPowNumeric;
 import sym_derivation.symderivation.arith.SymProd;
 import sym_derivation.symderivation.arith.SymSum;
 
@@ -34,6 +33,6 @@ public class SymAtan extends SymFunction{
 			return new SymZero();
 		}
 		
-		return new SymProd(new SymInv(new SymSum(new SymOne(), new SymPow(arg,2))), dif);
+		return new SymProd(new SymInv(new SymSum(new SymOne(), new SymPowNumeric(arg,2))), dif);
 	}
 }

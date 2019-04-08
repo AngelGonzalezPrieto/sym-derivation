@@ -10,7 +10,7 @@ import org.junit.Test;
 import sym_derivation.symderivation.SymFunction;
 import sym_derivation.symderivation.SymVar;
 import sym_derivation.symderivation.arith.SymInv;
-import sym_derivation.symderivation.arith.SymPow;
+import sym_derivation.symderivation.arith.SymPowNumeric;
 import sym_derivation.symderivation.arith.SymProd;
 import sym_derivation.symderivation.arith.SymSum;
 import sym_derivation.symderivation.arith.SymUnaryMinus;
@@ -92,13 +92,13 @@ public class EvalTest {
 		testf = new SymUnaryMinus(arg1);
 		assertEquals(-VALUE_PARAM, testf.eval(param), THRESHOLD);
 		
-		testf = new SymPow(arg2, 3);
+		testf = new SymPowNumeric(arg2, 3);
 		assertEquals(VALUE_PARAM2*VALUE_PARAM2*VALUE_PARAM2, testf.eval(param), THRESHOLD);
-		testf = new SymPow(arg2, 0);
+		testf = new SymPowNumeric(arg2, 0);
 		assertEquals(1.0, testf.eval(param), THRESHOLD);
-		testf = new SymPow(arg2, 1);
+		testf = new SymPowNumeric(arg2, 1);
 		assertEquals(VALUE_PARAM2, testf.eval(param), THRESHOLD);
-		testf = new SymPow(arg2, -3);
+		testf = new SymPowNumeric(arg2, -3);
 		assertEquals(1/(VALUE_PARAM2*VALUE_PARAM2*VALUE_PARAM2), testf.eval(param), THRESHOLD);
 		
 		testf = new SymInv(arg2);

@@ -1,6 +1,5 @@
 package sym_derivation.symderivation;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -8,7 +7,9 @@ import java.util.Queue;
 
 import sym_derivation.symderivation.arith.SymInv;
 import sym_derivation.symderivation.arith.SymPow;
+import sym_derivation.symderivation.arith.SymPowNumeric;
 import sym_derivation.symderivation.arith.SymProd;
+import sym_derivation.symderivation.arith.SymSubs;
 import sym_derivation.symderivation.arith.SymSum;
 import sym_derivation.symderivation.arith.SymUnaryMinus;
 import sym_derivation.symderivation.constant.SymConstant;
@@ -92,6 +93,13 @@ public abstract class SymFunction {
 		else if(token.equals("-")) {
 			//System.out.println("Created -");
 			arg1 = parseTokens(q);
+			arg2 = parseTokens(q);
+			
+			return new SymSubs(arg1, arg2);
+		}
+		else if(token.equals("--")) {
+			//System.out.println("Created unary -");
+			arg1 = parseTokens(q);
 			
 			return new SymUnaryMinus(arg1);
 		}
@@ -104,9 +112,16 @@ public abstract class SymFunction {
 		else if(token.equals("pow")) {
 			//System.out.println("Created Pow");
 			arg1 = parseTokens(q);
+			arg2 = parseTokens(q);
+			
+			return new SymPow(arg1, arg2);
+		}
+		else if(token.equals("pown")) {
+			//System.out.println("Created Pown");
+			arg1 = parseTokens(q);
 			String value = q.remove();
 			
-			return new SymPow(arg1, Integer.parseInt(value));
+			return new SymPowNumeric(arg1, Integer.parseInt(value));
 		}
 		else if(token.equals("const")) {
 			//System.out.println("Created Constant");

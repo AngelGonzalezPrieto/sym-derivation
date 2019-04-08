@@ -1,11 +1,9 @@
 package sym_derivation.symderivation.trig;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import sym_derivation.symderivation.SymFunction;
 import sym_derivation.symderivation.arith.SymProd;
-import sym_derivation.symderivation.arith.SymSum;
 import sym_derivation.symderivation.constant.SymZero;
 
 public class SymSin extends SymFunction{

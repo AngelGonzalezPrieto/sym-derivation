@@ -5,11 +5,11 @@ import java.util.HashMap;
 import sym_derivation.symderivation.SymFunction;
 import sym_derivation.symderivation.constant.SymZero;
 
-public class SymSum extends SymFunction {
+public class SymSubs extends SymFunction {
 
 	SymFunction arg1, arg2;
 	
-	public SymSum(SymFunction arg1, SymFunction arg2) {
+	public SymSubs(SymFunction arg1, SymFunction arg2) {
 		this.arg1 = arg1;
 		this.arg2 = arg2;
 	}
@@ -21,7 +21,7 @@ public class SymSum extends SymFunction {
 		if(arg1Value == null || arg2Value == null) {
 			return null;
 		}else {
-			return arg1Value+arg2Value;
+			return arg1Value-arg2Value;
 		}
 	}
 
@@ -33,12 +33,12 @@ public class SymSum extends SymFunction {
 			return new SymZero();
 		}
 		else if(dif1 instanceof SymZero) {
-			return dif2;
+			return new SymUnaryMinus(dif2);
 		}
 		else if(dif2 instanceof SymZero) {
 			return dif1;
 		}
 		
-		return new SymSum(dif1, dif2);
+		return new SymSubs(dif1, dif2);
 	}
 }

@@ -11,8 +11,9 @@ import static org.hamcrest.CoreMatchers.instanceOf;
 import sym_derivation.symderivation.SymFunction;
 import sym_derivation.symderivation.SymVar;
 import sym_derivation.symderivation.arith.SymInv;
-import sym_derivation.symderivation.arith.SymPow;
+import sym_derivation.symderivation.arith.SymPowNumeric;
 import sym_derivation.symderivation.arith.SymProd;
+import sym_derivation.symderivation.arith.SymSubs;
 import sym_derivation.symderivation.arith.SymSum;
 import sym_derivation.symderivation.arith.SymUnaryMinus;
 import sym_derivation.symderivation.constant.SymConstant;
@@ -100,11 +101,21 @@ public class DiffTest {
 		assertEquals(Math.cos(VALUE_PARAM), testf.diff("x").eval(param), THRESHOLD);
 		
 		arg1 = new SymSin(new SymVar("x"));
+		arg2 = new SymSin(new SymVar("y"));
+		testf = new SymSubs(arg1, arg2);
+		assertEquals(Math.cos(VALUE_PARAM), testf.diff("x").eval(param), THRESHOLD);
+		assertEquals(-Math.cos(VALUE_PARAM2), testf.diff("y").eval(param), THRESHOLD);
+		
+		arg1 = new SymSin(new SymVar("x"));
 		arg2 = new SymSin(new SymVar("x"));
 		testf = new SymProd(arg1, arg2);
 		assertEquals(2*Math.sin(VALUE_PARAM)*Math.cos(VALUE_PARAM), testf.diff("x").eval(param), THRESHOLD);
 		testf = new SymUnaryMinus(arg1);
 		assertEquals(-Math.cos(VALUE_PARAM), testf.diff("x").eval(param), THRESHOLD);
+		
+		testf = new SymSubs(arg1, arg2);
+		assertEquals(Math.cos(VALUE_PARAM)-Math.cos(VALUE_PARAM), testf.diff("x").eval(param), THRESHOLD);
+
 		
 		arg1 = new SymSin(new SymVar("x"));
 		arg2 = new SymVar("x");
@@ -122,13 +133,13 @@ public class DiffTest {
 		testf = new SymProd(arg1, arg2);
 		assertEquals(Math.cos(VALUE_PARAM)*Math.sin(VALUE_PARAM2), testf.diff("x").eval(param), THRESHOLD);
 		
-		testf = new SymPow(arg1, 3);
+		testf = new SymPowNumeric(arg1, 3);
 		assertEquals(3*Math.sin(VALUE_PARAM)*Math.sin(VALUE_PARAM)*Math.cos(VALUE_PARAM), testf.diff("x").eval(param), THRESHOLD);
 		
-		testf = new SymPow(arg1, 0);
+		testf = new SymPowNumeric(arg1, 0);
 		assertThat(testf.diff("x"), instanceOf(SymZero.class));
 
-		testf = new SymPow(arg1, -3);
+		testf = new SymPowNumeric(arg1, -3);
 		assertEquals(-3*Math.pow(Math.sin(VALUE_PARAM),-4)*Math.cos(VALUE_PARAM), testf.diff("x").eval(param), THRESHOLD);
 		
 		testf = new SymInv(arg1);

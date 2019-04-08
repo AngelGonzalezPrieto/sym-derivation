@@ -10,7 +10,7 @@ import org.junit.Test;
 import sym_derivation.symderivation.SymFunction;
 import sym_derivation.symderivation.SymVar;
 import sym_derivation.symderivation.arith.SymInv;
-import sym_derivation.symderivation.arith.SymPow;
+import sym_derivation.symderivation.arith.SymPowNumeric;
 import sym_derivation.symderivation.arith.SymProd;
 import sym_derivation.symderivation.arith.SymSum;
 import sym_derivation.symderivation.arith.SymUnaryMinus;
@@ -85,22 +85,36 @@ public class ParseTest {
 	public void testArith() {
 		testf = SymFunction.parse("+ x y");
 		assertEquals(VALUE_PARAM + VALUE_PARAM2, testf.eval(param), THRESHOLD);
+		testf = SymFunction.parse("- x y");
+		assertEquals(VALUE_PARAM - VALUE_PARAM2, testf.eval(param), THRESHOLD);
 		testf = SymFunction.parse("* x y");
 		assertEquals(VALUE_PARAM * VALUE_PARAM2, testf.eval(param), THRESHOLD);
-		testf = SymFunction.parse("- x");
+		testf = SymFunction.parse("-- x");
 		assertEquals(-VALUE_PARAM, testf.eval(param), THRESHOLD);
 		
-		testf = SymFunction.parse("pow y 3");
+		testf = SymFunction.parse("pown y 3");
+		assertEquals(VALUE_PARAM2*VALUE_PARAM2*VALUE_PARAM2, testf.eval(param), THRESHOLD);
+		testf = SymFunction.parse("pow y const 3");
 		assertEquals(VALUE_PARAM2*VALUE_PARAM2*VALUE_PARAM2, testf.eval(param), THRESHOLD);
 		
-		testf = SymFunction.parse("pow y 0");
+		
+		testf = SymFunction.parse("pown y 0");
+		assertEquals(1.0, testf.eval(param), THRESHOLD);
+		testf = SymFunction.parse("pow y Zero");
 		assertEquals(1.0, testf.eval(param), THRESHOLD);
 		
-		testf = SymFunction.parse("pow y 1");
+		testf = SymFunction.parse("pown y 1");
+		assertEquals(VALUE_PARAM2, testf.eval(param), THRESHOLD);
+		testf = SymFunction.parse("pow y One");
 		assertEquals(VALUE_PARAM2, testf.eval(param), THRESHOLD);
 		
-		testf = SymFunction.parse("pow y -3");
+		testf = SymFunction.parse("pown y -3");
 		assertEquals(1/(VALUE_PARAM2*VALUE_PARAM2*VALUE_PARAM2), testf.eval(param), THRESHOLD);
+		testf = SymFunction.parse("pow y const -3");
+		assertEquals(1/(VALUE_PARAM2*VALUE_PARAM2*VALUE_PARAM2), testf.eval(param), THRESHOLD);
+		
+		testf = SymFunction.parse("pow y sin  x");
+		assertEquals(Math.pow(VALUE_PARAM2, Math.sin(VALUE_PARAM)), testf.eval(param), THRESHOLD);
 		
 		testf = SymFunction.parse("inv y");
 		assertEquals(1/VALUE_PARAM2, testf.eval(param), THRESHOLD);
@@ -113,7 +127,11 @@ public class ParseTest {
 
 	@Test
 	public void testComposition() {
-		testf = SymFunction.parse("inv sin + x pow cos * x + y One 3");
+		testf = SymFunction.parse("inv sin + x pown cos * x + y One 3");
+		assertEquals(Math.pow(Math.sin(Math.pow(Math.cos(VALUE_PARAM*(VALUE_PARAM2+1)), 3)+ VALUE_PARAM)
+				, -1), testf.eval(param), THRESHOLD);
+		
+		testf = SymFunction.parse("inv sin + x pow cos * x + y One const 3");
 		assertEquals(Math.pow(Math.sin(Math.pow(Math.cos(VALUE_PARAM*(VALUE_PARAM2+1)), 3)+ VALUE_PARAM)
 				, -1), testf.eval(param), THRESHOLD);
 	}

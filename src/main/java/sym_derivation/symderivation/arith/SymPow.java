@@ -3,49 +3,60 @@ package sym_derivation.symderivation.arith;
 import java.util.HashMap;
 
 import sym_derivation.symderivation.SymFunction;
-import sym_derivation.symderivation.constant.SymConstant;
+import sym_derivation.symderivation.constant.SymOne;
 import sym_derivation.symderivation.constant.SymZero;
+import sym_derivation.symderivation.trascendent.SymLog;
 
 public class SymPow extends SymFunction{
-	private SymFunction arg;
-	private int pow;
-	
-	private static double THRESHOLD = 10e-15;
-	
-	public SymPow(SymFunction arg, int pow) {
-		this.arg=arg;
+	private SymFunction base;
+	private SymFunction pow;
+		
+	public SymPow(SymFunction arg, SymFunction pow) {
+		this.base=arg;
 		this.pow = pow;
 	}
 
 	public Double eval(HashMap<String, Double> param) {
-		Double argValue = arg.eval(param);
+		Double argValue;
+		Double powValue;
 		
-		if(pow == 0) {
+		if(pow instanceof SymZero) {
 			return 1.0;
-		}else if(argValue == null ||
-				(pow<0 && Math.abs(argValue)<THRESHOLD)) {
+		}else if(pow instanceof SymOne) {
+			return base.eval(param);
+		}
+		
+		argValue = base.eval(param);
+		powValue = pow.eval(param);
+		
+		if(powValue == 0) {
+			return 1.0;
+		}else if(argValue == null || powValue == null ||
+				(powValue <0 && Math.abs(argValue)<0.0)) {
 			return null;
 		}else {
-			return Math.pow(argValue, pow);
+			return Math.pow(argValue, powValue);
 		}
 	}
 
 	public SymFunction diff(String var) {
-		if(pow == 0) {
+		if(pow instanceof SymZero) {
 			return new SymZero();
-		}else if(pow == 1) {
-			return arg.diff(var);
-		}else if(pow == 2) {
-			return new SymProd(new SymConstant(2),
-					new SymProd(arg, arg.diff(var)));
+		}else if(pow instanceof SymOne) {
+			return base.diff(var);
 		}
 		
-		SymFunction dif = arg.diff(var);
-		if(dif instanceof SymZero) {
-			return new SymZero();
+		SymFunction difbase = base.diff(var);
+		SymFunction difexp = pow.diff(var);
+		
+		if(difexp instanceof SymZero) {
+			return new SymProd(new SymProd(pow, difbase), new SymPow(base, new SymSubs(pow, new SymOne())));
+		}else if(difbase instanceof SymZero) {
+			return new SymProd(new SymProd(difexp, new SymLog(base)), new SymPow(base, pow));
 		}
-		return new SymProd(new SymConstant(pow),
-				new SymProd(new SymPow(arg, pow-1), dif));
+		
+		return new SymSum(new SymProd(new SymProd(difexp, new SymLog(base)), new SymPow(base, pow)),
+				new SymProd(new SymProd(pow, difbase), new SymPow(base, new SymSubs(pow, new SymOne()))));
 	}
 
 }
