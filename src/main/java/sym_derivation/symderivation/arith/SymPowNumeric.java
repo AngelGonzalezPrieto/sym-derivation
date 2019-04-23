@@ -20,11 +20,15 @@ public class SymPowNumeric extends SymFunction{
 	public Double eval(HashMap<String, Double> param) {
 		Double argValue = arg.eval(param);
 		
+		if(argValue == null) {
+			return null;
+		}
+		
 		if(pow == 0) {
 			return 1.0;
-		}else if(argValue == null ||
+		}else if(argValue.isNaN() ||
 				(pow<0 && Math.abs(argValue)<THRESHOLD)) {
-			return null;
+			return Double.NaN;
 		}else {
 			return Math.pow(argValue, pow);
 		}

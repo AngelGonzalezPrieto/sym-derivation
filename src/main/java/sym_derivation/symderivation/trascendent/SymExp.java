@@ -18,6 +18,10 @@ public class SymExp extends SymFunction{
 		
 		if(argValue == null) {
 			return null;
+		}
+		
+		if(argValue.isNaN()) {
+			return Double.NaN;
 		}else {
 			return Math.exp(argValue);
 		}

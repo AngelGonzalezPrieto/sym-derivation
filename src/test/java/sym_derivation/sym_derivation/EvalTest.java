@@ -10,6 +10,7 @@ import org.junit.Test;
 import sym_derivation.symderivation.SymFunction;
 import sym_derivation.symderivation.SymVar;
 import sym_derivation.symderivation.arith.SymInv;
+import sym_derivation.symderivation.arith.SymPow;
 import sym_derivation.symderivation.arith.SymPowNumeric;
 import sym_derivation.symderivation.arith.SymProd;
 import sym_derivation.symderivation.arith.SymSum;
@@ -119,5 +120,17 @@ public class EvalTest {
 		assertEquals(Math.exp(Math.sin(VALUE_PARAM)), testf.eval(param), THRESHOLD);
 		testf = new SymLog(arg);
 		assertEquals(Math.log(VALUE_PARAM), testf.eval(param), THRESHOLD);
+	}
+	
+	@Test
+	public void testNaN() {
+		SymFunction arg = new SymVar("x");
+		param.put("x", -0.5);
+		testf = new SymLog(arg);
+		assertTrue(testf.eval(param).isNaN());
+		testf = new SymPow(arg, arg);
+		assertTrue(testf.eval(param).isNaN());
+		testf = new SymLog(new SymSin(arg));
+		assertTrue(testf.eval(param).isNaN());
 	}
 }

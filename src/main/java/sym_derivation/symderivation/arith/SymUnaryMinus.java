@@ -17,6 +17,10 @@ public class SymUnaryMinus extends SymFunction{
 		
 		if(argValue == null) {
 			return null;
+		}
+		
+		if(argValue.isNaN()) {
+			return Double.NaN;
 		}else {
 			return -argValue;
 		}

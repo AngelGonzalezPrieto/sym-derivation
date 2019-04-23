@@ -8,19 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import sym_derivation.symderivation.SymFunction;
-import sym_derivation.symderivation.SymVar;
-import sym_derivation.symderivation.arith.SymInv;
-import sym_derivation.symderivation.arith.SymPowNumeric;
-import sym_derivation.symderivation.arith.SymProd;
-import sym_derivation.symderivation.arith.SymSum;
-import sym_derivation.symderivation.arith.SymUnaryMinus;
-import sym_derivation.symderivation.constant.SymConstant;
-import sym_derivation.symderivation.constant.SymOne;
-import sym_derivation.symderivation.constant.SymZero;
-import sym_derivation.symderivation.trascendent.SymExp;
-import sym_derivation.symderivation.trascendent.SymLog;
-import sym_derivation.symderivation.trig.SymCos;
-import sym_derivation.symderivation.trig.SymSin;
 
 public class ParseTest {
 	private SymFunction testf;

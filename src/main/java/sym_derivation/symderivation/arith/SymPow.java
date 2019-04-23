@@ -10,6 +10,9 @@ import sym_derivation.symderivation.trascendent.SymLog;
 public class SymPow extends SymFunction{
 	private SymFunction base;
 	private SymFunction pow;
+	
+	private static double THRESHOLD = 10e-15;
+
 		
 	public SymPow(SymFunction arg, SymFunction pow) {
 		this.base=arg;
@@ -29,11 +32,15 @@ public class SymPow extends SymFunction{
 		argValue = base.eval(param);
 		powValue = pow.eval(param);
 		
+		if(powValue == null || argValue == null) {
+			return null;
+		}
+		
 		if(powValue == 0) {
 			return 1.0;
-		}else if(argValue == null || powValue == null ||
-				(powValue <0 && Math.abs(argValue)<0.0)) {
-			return null;
+		}else if(argValue.isNaN() || powValue.isNaN() ||
+				(powValue <0 && Math.abs(argValue)<THRESHOLD)) {
+			return Double.NaN;
 		}else {
 			return Math.pow(argValue, powValue);
 		}

@@ -10,6 +10,8 @@ import sym_derivation.symderivation.arith.SymProd;
 public class SymLog extends SymFunction{	
 	SymFunction arg;
 	
+	private static double THRESHOLD = 10e-15;
+	
 	public SymLog(SymFunction arg) {
 		this.arg = arg;
 	}
@@ -19,6 +21,10 @@ public class SymLog extends SymFunction{
 		
 		if(argValue == null) {
 			return null;
+		}
+		
+		if(argValue.isNaN() || Math.abs(argValue) < THRESHOLD) {
+			return Double.NaN;
 		}else {
 			return Math.log(argValue);
 		}

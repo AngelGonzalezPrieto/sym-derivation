@@ -20,6 +20,10 @@ public class SymSubs extends SymFunction {
 		
 		if(arg1Value == null || arg2Value == null) {
 			return null;
+		}
+		
+		if(arg1Value.isNaN() || arg2Value.isNaN()) {
+			return Double.NaN;
 		}else {
 			return arg1Value-arg2Value;
 		}
