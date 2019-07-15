@@ -35,4 +35,9 @@ public class SymCos extends SymFunction{
 		}
 		return new SymUnaryMinus(new SymProd(new SymSin(arg), dif));
 	}
+	
+	@Override
+	public String toInfix() {
+		return "cos(" + arg.toInfix() + ")";
+	}
 }

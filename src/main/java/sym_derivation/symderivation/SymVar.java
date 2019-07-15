@@ -24,4 +24,9 @@ public class SymVar extends SymFunction{
 		}
 	}
 
+	@Override
+	public String toInfix() {
+		return nameVar;
+	}
+
 }

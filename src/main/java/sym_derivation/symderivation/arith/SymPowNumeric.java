@@ -52,4 +52,9 @@ public class SymPowNumeric extends SymFunction{
 				new SymProd(new SymPowNumeric(arg, pow-1), dif));
 	}
 
+	@Override
+	public String toInfix() {
+		return "(" + arg.toInfix() + ")^(" + Integer.toString(pow) + ")";
+	}
+
 }

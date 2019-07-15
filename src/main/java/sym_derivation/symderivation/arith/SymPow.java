@@ -15,7 +15,7 @@ public class SymPow extends SymFunction{
 
 		
 	public SymPow(SymFunction arg, SymFunction pow) {
-		this.base=arg;
+		this.base= arg;
 		this.pow = pow;
 	}
 
@@ -64,6 +64,11 @@ public class SymPow extends SymFunction{
 		
 		return new SymSum(new SymProd(new SymProd(difexp, new SymLog(base)), new SymPow(base, pow)),
 				new SymProd(new SymProd(pow, difbase), new SymPow(base, new SymSubs(pow, new SymOne()))));
+	}
+
+	@Override
+	public String toInfix() {
+		return "(" + base.toInfix() + ")^(" + pow.toInfix() + ")";
 	}
 
 }

@@ -19,4 +19,9 @@ public class SymConstant extends SymFunction{
 	public SymFunction diff(String var) {
 		return new SymZero();
 	}
+
+	@Override
+	public String toInfix() {
+		return Double.toString(value);
+	}
 }

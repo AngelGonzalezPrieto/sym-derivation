@@ -38,4 +38,9 @@ public class SymLog extends SymFunction{
 		
 		return new SymProd(new SymInv(arg), dif);
 	}
+
+	@Override
+	public String toInfix() {
+		return "log(" + arg.toInfix() + ")";
+	}
 }

@@ -46,4 +46,9 @@ public class SymProd extends SymFunction{
 				new SymProd(arg1, dif2));
 	}
 
+	@Override
+	public String toInfix() {
+		return "(" + arg1.toInfix() + ") * (" + arg2.toInfix() + ")";
+	}
+
 }

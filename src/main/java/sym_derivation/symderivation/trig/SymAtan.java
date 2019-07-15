@@ -39,4 +39,9 @@ public class SymAtan extends SymFunction{
 		
 		return new SymProd(new SymInv(new SymSum(new SymOne(), new SymPowNumeric(arg,2))), dif);
 	}
+
+	@Override
+	public String toInfix() {
+		return "atan(" + arg.toInfix() + ")";
+	}
 }

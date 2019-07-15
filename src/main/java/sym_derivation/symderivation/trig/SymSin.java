@@ -34,4 +34,9 @@ public class SymSin extends SymFunction{
 		}
 		return new SymProd(new SymCos(arg), dif);
 	}
+	
+	@Override
+	public String toInfix() {
+		return "sin(" + arg.toInfix() + ")";
+	}
 }

@@ -35,4 +35,9 @@ public class SymExp extends SymFunction{
 		
 		return new SymProd(new SymExp(arg), dif);
 	}
+
+	@Override
+	public String toInfix() {
+		return "exp(" + arg.toInfix() + ")";
+	}
 }
