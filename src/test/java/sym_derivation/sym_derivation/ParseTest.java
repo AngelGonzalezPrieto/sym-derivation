@@ -121,6 +121,7 @@ public class ParseTest {
 		testf = SymFunction.parse("inv sin + x pow cos * x + y One const 3");
 		assertEquals(Math.pow(Math.sin(Math.pow(Math.cos(VALUE_PARAM*(VALUE_PARAM2+1)), 3)+ VALUE_PARAM)
 				, -1), testf.eval(param), THRESHOLD);
+
 	}
 
 	@Test
@@ -129,5 +130,13 @@ public class ParseTest {
 		assertEquals(Math.exp(Math.sin(VALUE_PARAM)), testf.eval(param), THRESHOLD);
 		testf = SymFunction.parse("log x");
 		assertEquals(Math.log(VALUE_PARAM), testf.eval(param), THRESHOLD);
+	}
+	
+	@Test
+	public void testInput() {
+		String str = "-(exp(atan(pu5)),-(-(*(pu1,qi5),exp(pu3)),-(atan(-(atan(qi3),-(-(*(pu1,-(-(*(pu1,qi5),-(pu1,pu1)),-(atan(-(atan(qi3),-(-(qi5,sin(-(*(pu1,-(-(*(pu1,qi5),exp(pu3)),-(atan(-(atan(qi3),-(-(*(pu1,-(-(*(pu1,qi5),exp(pu3)),-(atan(-(atan(qi3),-(-(*(pu1,qi5),sin(-(pu1,pu1))),atan(qi3)))),qi5))),sin(atan(pu5))),pu1))),qi5))),exp(qi2)))),pu1))),qi5))),sin(atan(pu5))),pu1))),qi5)))";
+		/** str = str.replace(',', ' ');**/
+		testf = SymFunction.parse(str);
+		System.out.println(testf.toInfix());
 	}
 }
