@@ -29,4 +29,15 @@ public class SymVar extends SymFunction{
 		return nameVar;
 	}
 
+	@Override
+	public String toJavaCode() {
+		return nameVar;
+	}
+
+	@Override
+	public int getDepth() {
+		return 1;
+	}
+
+	
 }

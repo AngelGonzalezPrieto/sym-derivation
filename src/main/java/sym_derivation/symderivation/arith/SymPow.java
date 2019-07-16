@@ -71,4 +71,14 @@ public class SymPow extends SymFunction{
 		return "(" + base.toInfix() + ")^(" + pow.toInfix() + ")";
 	}
 
+	@Override
+	public String toJavaCode() {
+		return "Math.pow(" + base.toJavaCode() + "," + pow.toJavaCode() + ")";
+	}
+
+	@Override
+	public int getDepth() {
+		return Math.max(base.getDepth(), pow.getDepth())+1;
+	}
+
 }

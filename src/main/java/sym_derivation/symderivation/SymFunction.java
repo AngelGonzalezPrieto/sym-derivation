@@ -25,6 +25,8 @@ public abstract class SymFunction {
 	public abstract Double eval(HashMap<String, Double> param);
 	public abstract SymFunction diff(String var);
 	public abstract String toInfix();
+	public abstract String toJavaCode();
+	public abstract int getDepth();
 	
 	public static SymFunction parse(String f) {
 		Queue<String> q = new LinkedList<String>(Arrays.asList(f.split(" +")));

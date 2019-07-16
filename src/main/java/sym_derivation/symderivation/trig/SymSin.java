@@ -39,4 +39,14 @@ public class SymSin extends SymFunction{
 	public String toInfix() {
 		return "sin(" + arg.toInfix() + ")";
 	}
+	
+	@Override
+	public String toJavaCode() {
+		return "Math.sin(" + arg.toJavaCode() + ")";
+	}
+
+	@Override
+	public int getDepth() {
+		return arg.getDepth()+1;
+	}
 }

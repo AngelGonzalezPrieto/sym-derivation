@@ -43,4 +43,14 @@ public class SymLog extends SymFunction{
 	public String toInfix() {
 		return "log(" + arg.toInfix() + ")";
 	}
+	
+	@Override
+	public String toJavaCode() {
+		return "Math.log(" + arg.toJavaCode() + ")";
+	}
+
+	@Override
+	public int getDepth() {
+		return arg.getDepth()+1;
+	}
 }

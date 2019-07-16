@@ -40,4 +40,14 @@ public class SymExp extends SymFunction{
 	public String toInfix() {
 		return "exp(" + arg.toInfix() + ")";
 	}
+
+	@Override
+	public String toJavaCode() {
+		return "Math.exp(" + arg.toJavaCode() + ")";
+	}
+
+	@Override
+	public int getDepth() {
+		return arg.getDepth()+1;
+	}
 }

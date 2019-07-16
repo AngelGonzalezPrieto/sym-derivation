@@ -50,4 +50,14 @@ public class SymSum extends SymFunction {
 	public String toInfix() {
 		return "(" + arg1.toInfix() + ") + (" + arg2.toInfix() + ")";
 	}
+	
+	@Override
+	public String toJavaCode() {
+		return "(" + arg1.toJavaCode() + ") + (" + arg2.toJavaCode() + ")";
+	}
+
+	@Override
+	public int getDepth() {
+		return Math.max(arg1.getDepth(), arg2.getDepth())+1;
+	}
 }

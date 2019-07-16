@@ -57,4 +57,13 @@ public class SymPowNumeric extends SymFunction{
 		return "(" + arg.toInfix() + ")^(" + Integer.toString(pow) + ")";
 	}
 
+	@Override
+	public String toJavaCode() {
+		return "Math.pow(" + arg.toJavaCode() + "," + Integer.toString(pow) + ")";
+	}
+
+	@Override
+	public int getDepth() {
+		return arg.getDepth()+1;
+	}
 }

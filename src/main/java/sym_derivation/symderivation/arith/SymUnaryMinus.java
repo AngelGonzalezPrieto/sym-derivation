@@ -39,5 +39,15 @@ public class SymUnaryMinus extends SymFunction{
 	public String toInfix() {
 		return "-(" + arg.toInfix() + ")";
 	}
+	
+	@Override
+	public String toJavaCode() {
+		return "-(" + arg.toJavaCode() + ")";
+	}
+
+	@Override
+	public int getDepth() {
+		return arg.getDepth()+1;
+	}
 
 }

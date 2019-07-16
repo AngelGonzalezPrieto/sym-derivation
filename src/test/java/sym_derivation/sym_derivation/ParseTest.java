@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.HashMap;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import sym_derivation.symderivation.SymFunction;
@@ -99,17 +100,22 @@ public class ParseTest {
 		assertEquals(1/(VALUE_PARAM2*VALUE_PARAM2*VALUE_PARAM2), testf.eval(param), THRESHOLD);
 		testf = SymFunction.parse("pow y const -3");
 		assertEquals(1/(VALUE_PARAM2*VALUE_PARAM2*VALUE_PARAM2), testf.eval(param), THRESHOLD);
+		assertEquals(testf.getDepth(),2);
 		
 		testf = SymFunction.parse("pow y sin  x");
 		assertEquals(Math.pow(VALUE_PARAM2, Math.sin(VALUE_PARAM)), testf.eval(param), THRESHOLD);
+		assertEquals(testf.getDepth(),3);
 		
 		testf = SymFunction.parse("inv y");
 		assertEquals(1/VALUE_PARAM2, testf.eval(param), THRESHOLD);
 		
 		testf = SymFunction.parse("+ sin x cos x");
 		assertEquals(Math.sin(VALUE_PARAM) + Math.cos(VALUE_PARAM), testf.eval(param), THRESHOLD);
+		assertEquals(testf.getDepth(),3);
+
 		testf = SymFunction.parse("* sin x cos x");
 		assertEquals(Math.sin(VALUE_PARAM) * Math.cos(VALUE_PARAM), testf.eval(param), THRESHOLD);
+		assertEquals(testf.getDepth(),3);
 	}
 
 	@Test
@@ -117,7 +123,8 @@ public class ParseTest {
 		testf = SymFunction.parse("inv sin + x pown cos * x + y One 3");
 		assertEquals(Math.pow(Math.sin(Math.pow(Math.cos(VALUE_PARAM*(VALUE_PARAM2+1)), 3)+ VALUE_PARAM)
 				, -1), testf.eval(param), THRESHOLD);
-		
+		assertEquals(testf.getDepth(),8);
+
 		testf = SymFunction.parse("inv sin + x pow cos * x + y One const 3");
 		assertEquals(Math.pow(Math.sin(Math.pow(Math.cos(VALUE_PARAM*(VALUE_PARAM2+1)), 3)+ VALUE_PARAM)
 				, -1), testf.eval(param), THRESHOLD);
@@ -128,15 +135,52 @@ public class ParseTest {
 	public void testTras() {
 		testf = SymFunction.parse("exp sin x");
 		assertEquals(Math.exp(Math.sin(VALUE_PARAM)), testf.eval(param), THRESHOLD);
+		assertEquals(testf.getDepth(),3);
 		testf = SymFunction.parse("log x");
 		assertEquals(Math.log(VALUE_PARAM), testf.eval(param), THRESHOLD);
+		assertEquals(testf.getDepth(),2);
 	}
 	
 	@Test
+	@Ignore
 	public void testInput() {
-		String str = "-(exp(atan(pu5)),-(-(*(pu1,qi5),exp(pu3)),-(atan(-(atan(qi3),-(-(*(pu1,-(-(*(pu1,qi5),-(pu1,pu1)),-(atan(-(atan(qi3),-(-(qi5,sin(-(*(pu1,-(-(*(pu1,qi5),exp(pu3)),-(atan(-(atan(qi3),-(-(*(pu1,-(-(*(pu1,qi5),exp(pu3)),-(atan(-(atan(qi3),-(-(*(pu1,qi5),sin(-(pu1,pu1))),atan(qi3)))),qi5))),sin(atan(pu5))),pu1))),qi5))),exp(qi2)))),pu1))),qi5))),sin(atan(pu5))),pu1))),qi5)))";
-		/** str = str.replace(',', ' ');**/
-		testf = SymFunction.parse(str);
-		System.out.println(testf.toInfix());
+		SymFunction testf1, testf2;
+		String str1 = "-(exp(atan(pu5)),-(-(*(pu1,qi5),exp(pu3)),-(atan(-(atan(qi3),-(-(*(pu1,-(-(*(pu1,qi5),-(pu1,pu1)),-(atan(-(atan(qi3),-(-(qi5,sin(-(*(pu1,-(-(*(pu1,qi5),exp(pu3)),-(atan(-(atan(qi3),-(-(*(pu1,-(-(*(pu1,qi5),exp(pu3)),-(atan(-(atan(qi3),-(-(*(pu1,qi5),sin(-(pu1,pu1))),atan(qi3)))),qi5))),sin(atan(pu5))),pu1))),qi5))),exp(qi2)))),pu1))),qi5))),sin(atan(pu5))),pu1))),qi5)))";
+		String str2 = "exp(atan(exp(+(exp(+(atan(qi1),pu1)),+(+(--(atan(exp(+(*(pu5,atan(exp(+(pu2,atan(exp(+(+(pu1,exp(atan(-(+(exp(atan(pu2)),atan(+(+(qi1,atan(pu1)),atan(exp(pu1))))),+(+(+(exp(atan(qi4)),qi0),atan(exp(+(exp(qi1),atan(qi1))))),+(+(pu1,exp(atan(pu2))),qi1)))))),qi1))))))),+(+(--(atan(+(+(qi1,atan(exp(+(*(pu5,qi1),pu2)))),qi1))),atan(*(pu2,qi1))),+(exp(qi3),atan(qi4))))))),atan(qi1)),atan(pu0))))))";
+		str1 = str1.replace(',', ' ');
+		str1 = str1.replace('(', ' ');
+		str1 = str1.replace(')', ' ');
+		
+		str2 = str2.replace(',', ' ');
+		str2 = str2.replace('(', ' ');
+		str2 = str2.replace(')', ' ');
+		
+		testf1 = SymFunction.parse(str1);
+		System.out.println(testf1.getDepth());
+		System.out.println(testf1.toJavaCode());
+		System.out.println(testf1.toInfix());
+		System.out.println("-----");
+		
+		testf2 = SymFunction.parse(str2);
+		System.out.println(testf2.getDepth());
+		System.out.println(testf2.toJavaCode());
+		System.out.println(testf2.toInfix());
+
+		
+		double VALUE = 0.8;
+		double pu0 = VALUE, pu1 = VALUE, pu2 = VALUE, pu3 = VALUE, pu4 = VALUE, pu5 = VALUE;
+		double qi0 = VALUE, qi1 = VALUE, qi2 = VALUE, qi3 = VALUE, qi4 = VALUE, qi5 = VALUE;
+		HashMap<String, Double> par = new HashMap<String, Double>();
+		
+		for(int i=0; i<=5; i++) {
+			par.put("pu"+i, VALUE);
+			par.put("qi"+i, VALUE);
+		}	
+		
+		Double res1 = (Math.exp(Math.atan(pu5))) - ((((pu1) * (qi5)) - (Math.exp(pu3))) - ((Math.atan((Math.atan(qi3)) - ((((pu1) * ((((pu1) * (qi5)) - ((pu1) - (pu1))) - ((Math.atan((Math.atan(qi3)) - (((qi5) - (Math.sin(((pu1) * ((((pu1) * (qi5)) - (Math.exp(pu3))) - ((Math.atan((Math.atan(qi3)) - ((((pu1) * ((((pu1) * (qi5)) - (Math.exp(pu3))) - ((Math.atan((Math.atan(qi3)) - ((((pu1) * (qi5)) - (Math.sin((pu1) - (pu1)))) - (Math.atan(qi3))))) - (qi5)))) - (Math.sin(Math.atan(pu5)))) - (pu1)))) - (qi5)))) - (Math.exp(qi2))))) - (pu1)))) - (qi5)))) - (Math.sin(Math.atan(pu5)))) - (pu1)))) - (qi5)));
+		assertEquals(res1, testf1.eval(par), THRESHOLD);
+		
+		Double res2 = Math.exp(Math.atan(Math.exp((Math.exp((Math.atan(qi1)) + (pu1))) + (((-(Math.atan(Math.exp(((pu5) * (Math.atan(Math.exp((pu2) + (Math.atan(Math.exp(((pu1) + (Math.exp(Math.atan(((Math.exp(Math.atan(pu2))) + (Math.atan(((qi1) + (Math.atan(pu1))) + (Math.atan(Math.exp(pu1)))))) - ((((Math.exp(Math.atan(qi4))) + (qi0)) + (Math.atan(Math.exp((Math.exp(qi1)) + (Math.atan(qi1)))))) + (((pu1) + (Math.exp(Math.atan(pu2)))) + (qi1))))))) + (qi1)))))))) + (((-(Math.atan(((qi1) + (Math.atan(Math.exp(((pu5) * (qi1)) + (pu2))))) + (qi1)))) + (Math.atan((pu2) * (qi1)))) + ((Math.exp(qi3)) + (Math.atan(qi4)))))))) + (Math.atan(qi1))) + (Math.atan(pu0))))));
+		assertEquals(res2, testf2.eval(par), THRESHOLD);
 	}
 }

@@ -24,4 +24,14 @@ public class SymConstant extends SymFunction{
 	public String toInfix() {
 		return Double.toString(value);
 	}
+	
+	@Override
+	public String toJavaCode() {
+		return Double.toString(value);
+	}
+
+	@Override
+	public int getDepth() {
+		return 1;
+	}
 }

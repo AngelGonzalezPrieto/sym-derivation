@@ -44,4 +44,14 @@ public class SymAtan extends SymFunction{
 	public String toInfix() {
 		return "atan(" + arg.toInfix() + ")";
 	}
+	
+	@Override
+	public String toJavaCode() {
+		return "Math.atan(" + arg.toJavaCode() + ")";
+	}
+
+	@Override
+	public int getDepth() {
+		return arg.getDepth()+1;
+	}
 }

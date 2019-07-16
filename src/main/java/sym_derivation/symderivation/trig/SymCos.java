@@ -40,4 +40,14 @@ public class SymCos extends SymFunction{
 	public String toInfix() {
 		return "cos(" + arg.toInfix() + ")";
 	}
+	
+	@Override
+	public String toJavaCode() {
+		return "Math.cos(" + arg.toJavaCode() + ")";
+	}
+
+	@Override
+	public int getDepth() {
+		return arg.getDepth()+1;
+	}
 }
