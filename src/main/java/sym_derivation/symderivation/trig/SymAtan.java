@@ -42,7 +42,7 @@ public class SymAtan extends SymFunction{
 
 	@Override
 	public String toInfix() {
-		return "atan(" + arg.toInfix() + ")";
+		return "arctan(" + arg.toInfix() + ")";
 	}
 	
 	@Override

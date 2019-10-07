@@ -168,7 +168,7 @@ public class ParseTest {
 
 		
 		double VALUE = 0.8;
-		double pu0 = VALUE, pu1 = VALUE, pu2 = VALUE, pu3 = VALUE, pu4 = VALUE, pu5 = VALUE;
+		double pu0 = VALUE, pu1 = VALUE, pu2 = VALUE, pu3 = VALUE, pu5 = VALUE;
 		double qi0 = VALUE, qi1 = VALUE, qi2 = VALUE, qi3 = VALUE, qi4 = VALUE, qi5 = VALUE;
 		HashMap<String, Double> par = new HashMap<String, Double>();
 		
