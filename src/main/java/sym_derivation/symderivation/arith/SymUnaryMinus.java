@@ -5,6 +5,15 @@ import java.util.HashMap;
 import sym_derivation.symderivation.SymFunction;
 import sym_derivation.symderivation.constant.SymZero;
 
+/**
+ * Additive inverse of a symbolic function.
+ * It is an unary operand.
+ * 
+ * Token notation: --.
+ * 
+ * @author Angel Gonzalez-Prieto
+ *
+ */
 public class SymUnaryMinus extends SymFunction{
 	SymFunction arg;
 	

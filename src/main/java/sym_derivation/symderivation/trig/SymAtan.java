@@ -10,6 +10,14 @@ import sym_derivation.symderivation.arith.SymPowNumeric;
 import sym_derivation.symderivation.arith.SymProd;
 import sym_derivation.symderivation.arith.SymSum;
 
+/**
+ * Inverse of the tan function (arctan function).
+ * 
+ * Token notation: atan.
+ * 
+ * @author Angel Gonzalez-Prieto
+ *
+ */
 public class SymAtan extends SymFunction{	
 	SymFunction arg;
 	
@@ -42,6 +50,9 @@ public class SymAtan extends SymFunction{
 
 	@Override
 	public String toInfix() {
+		/*Warning: The string atan function is not
+		 *correctly parsed by SageMath. For this
+		 *reason, we substituted it by arctan.*/
 		return "arctan(" + arg.toInfix() + ")";
 	}
 	

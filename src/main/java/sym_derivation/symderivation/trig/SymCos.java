@@ -7,6 +7,14 @@ import sym_derivation.symderivation.arith.SymUnaryMinus;
 import sym_derivation.symderivation.constant.SymZero;
 import sym_derivation.symderivation.arith.SymProd;
 
+/**
+ * Cosine function.
+ * 
+ * Token notation: cos.
+ * 
+ * @author Angel Gonzalez-Prieto
+ *
+ */
 public class SymCos extends SymFunction{	
 	SymFunction arg;
 	

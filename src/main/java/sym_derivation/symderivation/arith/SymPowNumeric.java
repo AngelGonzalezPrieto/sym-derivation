@@ -6,6 +6,15 @@ import sym_derivation.symderivation.SymFunction;
 import sym_derivation.symderivation.constant.SymConstant;
 import sym_derivation.symderivation.constant.SymZero;
 
+/**
+ * Pow function with only numerical exponents
+ * (no symbolic functions accepted).
+ * 
+ * Token notation: pown.
+ * 
+ * @author Angel Gonzalez-Prieto
+ *
+ */
 public class SymPowNumeric extends SymFunction{
 	private SymFunction arg;
 	private int pow;

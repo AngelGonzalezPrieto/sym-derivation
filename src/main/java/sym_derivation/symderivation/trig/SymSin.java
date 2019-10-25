@@ -6,6 +6,14 @@ import sym_derivation.symderivation.SymFunction;
 import sym_derivation.symderivation.arith.SymProd;
 import sym_derivation.symderivation.constant.SymZero;
 
+/**
+ * Sine function.
+ * 
+ * Token notation: sin.
+ * 
+ * @author Angel Gonzalez-Prieto
+ *
+ */
 public class SymSin extends SymFunction{
 	SymFunction arg;
 	

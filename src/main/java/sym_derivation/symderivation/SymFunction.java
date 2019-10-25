@@ -22,12 +22,66 @@ import sym_derivation.symderivation.trig.SymCos;
 import sym_derivation.symderivation.trig.SymSin;
 
 public abstract class SymFunction {
+	/**
+	 * Evaluates the symbolic function on a point and
+	 * returns its value.
+	 * 
+	 * @param param Dictionary that associates each of
+	 * the parameters of the symbolic function to
+	 * their value, represented by a Double.
+	 * @return Value of the function computed. If there
+	 * is an expected parameter of the function that is
+	 * missing in the dictionary, the function returns null.
+	 */
 	public abstract Double eval(HashMap<String, Double> param);
+	
+	/**
+	 * Computes the derivative of the symbolic function with
+	 * respect to the variable var.
+	 * 
+	 * @param param Variable on which the derivative
+	 * will be computed.
+	 * @return Symbolic function representing the
+	 * computed derivative. If var is not a parameter
+	 * of the function, consistently it returns Zero.
+	 */
 	public abstract SymFunction diff(String var);
+	
+	/**
+	 * Returns a string representing the infix notation
+	 * of the function.
+	 * 
+	 * @return String with the resulting string in
+	 * infix notation.
+	 */
 	public abstract String toInfix();
+	
+	/**
+	 * Returns a string implementing the Java code
+	 * to be executed in order to compute the same
+	 * function as the initial symbolic function.
+	 * 
+	 * @return Java code of the function.
+	 */
 	public abstract String toJavaCode();
+	
+	/**
+	 * Return the maximum depth of the function
+	 * i.e. the maximum number of compositions
+	 * of elementary functions.
+	 * 
+	 * @return Integer with the depth of the function.
+	 */
 	public abstract int getDepth();
 	
+	/**
+	 * Accepts a string f and returns the corresponding
+	 * symbolic function. The string f is assumed to be
+	 * written in prefix notation.
+	 * 
+	 * @param f String of the symbolic function
+	 * @return Symbolic function parsed.
+	 */
 	public static SymFunction parse(String f) {
 		Queue<String> q = new LinkedList<String>(Arrays.asList(f.split(" +")));
 		
@@ -42,6 +96,14 @@ public abstract class SymFunction {
 		}
 	}
 	
+	/**
+	 * Auxiliar function for the parsing process.
+	 * It accepts a queue of strings and computes
+	 * recursively the corresponding symbolic function.
+	 * 
+	 * @param q Queue of strings.
+	 * @return Symbolic function parsed.
+	 */
 	private static SymFunction parseTokens(Queue<String> q) {
 		SymFunction arg1, arg2;		
 		if(q.isEmpty()) {

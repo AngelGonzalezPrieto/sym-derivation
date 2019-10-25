@@ -4,6 +4,15 @@ import java.util.HashMap;
 
 import sym_derivation.symderivation.SymFunction;
 
+/**
+ * Constant symbolic functions. Any real value
+ * of the constant is allowed.
+ * 
+ * Token notation: const.
+ * 
+ * @author Angel Gonzalez-Prieto
+ *
+ */
 public class SymConstant extends SymFunction{
 	
 	double value;

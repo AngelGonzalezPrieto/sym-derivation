@@ -6,6 +6,14 @@ import sym_derivation.symderivation.SymFunction;
 import sym_derivation.symderivation.constant.SymZero;
 import sym_derivation.symderivation.arith.SymProd;
 
+/**
+ * Exponential function with base e.
+ * 
+ * Token notation: exp.
+ * 
+ * @author Angel Gonzalez-Prieto
+ *
+ */
 public class SymExp extends SymFunction{	
 	SymFunction arg;
 	

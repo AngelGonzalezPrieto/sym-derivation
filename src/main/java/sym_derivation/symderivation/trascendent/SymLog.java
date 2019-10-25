@@ -7,6 +7,14 @@ import sym_derivation.symderivation.constant.SymZero;
 import sym_derivation.symderivation.arith.SymInv;
 import sym_derivation.symderivation.arith.SymProd;
 
+/**
+ * Natural logarithm function (with base e).
+ * 
+ * Token notation: log.
+ * 
+ * @author Angel Gonzalez-Prieto
+ *
+ */
 public class SymLog extends SymFunction{	
 	SymFunction arg;
 	

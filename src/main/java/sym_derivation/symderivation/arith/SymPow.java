@@ -7,6 +7,15 @@ import sym_derivation.symderivation.constant.SymOne;
 import sym_derivation.symderivation.constant.SymZero;
 import sym_derivation.symderivation.trascendent.SymLog;
 
+/**
+ * Pow function. Any symbolic function is
+ * accepted as exponent.
+ * 
+ * Token notation: pow.
+ * 
+ * @author Angel Gonzalez-Prieto
+ *
+ */
 public class SymPow extends SymFunction{
 	private SymFunction base;
 	private SymFunction pow;

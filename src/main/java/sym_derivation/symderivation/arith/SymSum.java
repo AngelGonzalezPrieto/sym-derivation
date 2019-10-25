@@ -5,6 +5,14 @@ import java.util.HashMap;
 import sym_derivation.symderivation.SymFunction;
 import sym_derivation.symderivation.constant.SymZero;
 
+/**
+ * Sum of two symbolic functions.
+ * 
+ * Token notation: +.
+ * 
+ * @author Angel Gonzalez-Prieto
+ *
+ */
 public class SymSum extends SymFunction {
 
 	SymFunction arg1, arg2;

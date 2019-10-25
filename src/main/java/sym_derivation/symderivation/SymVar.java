@@ -5,6 +5,12 @@ import java.util.HashMap;
 import sym_derivation.symderivation.constant.SymOne;
 import sym_derivation.symderivation.constant.SymZero;
 
+/**
+ * Symbolic variable of a symbolic function.
+ * 
+ * @author Angel Gonzalez-Prieto
+ *
+ */
 public class SymVar extends SymFunction{
 	String nameVar;
 	
