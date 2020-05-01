@@ -1,24 +1,23 @@
-package sym_derivation.symderivation.trig;
+package es.upm.etsisi.symderivation.trig;
 
 import java.util.HashMap;
 
-import sym_derivation.symderivation.SymFunction;
-import sym_derivation.symderivation.arith.SymUnaryMinus;
-import sym_derivation.symderivation.constant.SymZero;
-import sym_derivation.symderivation.arith.SymProd;
+import es.upm.etsisi.symderivation.SymFunction;
+import es.upm.etsisi.symderivation.arith.SymProd;
+import es.upm.etsisi.symderivation.constant.SymZero;
 
 /**
- * Cosine function.
+ * Sine function.
  * 
- * Token notation: cos.
+ * Token notation: sin.
  * 
  * @author Angel Gonzalez-Prieto
  *
  */
-public class SymCos extends SymFunction{	
+public class SymSin extends SymFunction{
 	SymFunction arg;
 	
-	public SymCos(SymFunction arg) {
+	public SymSin(SymFunction arg) {
 		this.arg = arg;
 	}
 
@@ -32,7 +31,7 @@ public class SymCos extends SymFunction{
 		if(argValue.isNaN()) {
 			return Double.NaN;
 		}else {
-			return Math.cos(argValue);
+			return Math.sin(argValue);
 		}
 	}
 
@@ -41,17 +40,17 @@ public class SymCos extends SymFunction{
 		if(dif instanceof SymZero) {
 			return new SymZero();
 		}
-		return new SymUnaryMinus(new SymProd(new SymSin(arg), dif));
+		return new SymProd(new SymCos(arg), dif);
 	}
 	
 	@Override
 	public String toInfix() {
-		return "cos(" + arg.toInfix() + ")";
+		return "sin(" + arg.toInfix() + ")";
 	}
 	
 	@Override
 	public String toJavaCode() {
-		return "Math.cos(" + arg.toJavaCode() + ")";
+		return "Math.sin(" + arg.toJavaCode() + ")";
 	}
 
 	@Override

@@ -1,25 +1,25 @@
-package sym_derivation.symderivation;
+package es.upm.etsisi.symderivation;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import sym_derivation.symderivation.arith.SymInv;
-import sym_derivation.symderivation.arith.SymPow;
-import sym_derivation.symderivation.arith.SymPowNumeric;
-import sym_derivation.symderivation.arith.SymProd;
-import sym_derivation.symderivation.arith.SymSubs;
-import sym_derivation.symderivation.arith.SymSum;
-import sym_derivation.symderivation.arith.SymUnaryMinus;
-import sym_derivation.symderivation.constant.SymConstant;
-import sym_derivation.symderivation.constant.SymOne;
-import sym_derivation.symderivation.constant.SymZero;
-import sym_derivation.symderivation.trascendent.SymExp;
-import sym_derivation.symderivation.trascendent.SymLog;
-import sym_derivation.symderivation.trig.SymAtan;
-import sym_derivation.symderivation.trig.SymCos;
-import sym_derivation.symderivation.trig.SymSin;
+import es.upm.etsisi.symderivation.arith.SymPowNumeric;
+import es.upm.etsisi.symderivation.arith.SymProd;
+import es.upm.etsisi.symderivation.trig.SymAtan;
+import es.upm.etsisi.symderivation.trig.SymCos;
+import es.upm.etsisi.symderivation.trig.SymSin;
+import es.upm.etsisi.symderivation.arith.SymInv;
+import es.upm.etsisi.symderivation.arith.SymPow;
+import es.upm.etsisi.symderivation.arith.SymSubs;
+import es.upm.etsisi.symderivation.arith.SymSum;
+import es.upm.etsisi.symderivation.arith.SymUnaryMinus;
+import es.upm.etsisi.symderivation.constant.SymConstant;
+import es.upm.etsisi.symderivation.constant.SymOne;
+import es.upm.etsisi.symderivation.constant.SymZero;
+import es.upm.etsisi.symderivation.trascendent.SymExp;
+import es.upm.etsisi.symderivation.trascendent.SymLog;
 
 public abstract class SymFunction {
 	/**

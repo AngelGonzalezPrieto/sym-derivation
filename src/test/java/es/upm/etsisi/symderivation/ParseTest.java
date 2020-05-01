@@ -1,4 +1,4 @@
-package sym_derivation.sym_derivation;
+package es.upm.etsisi.symderivation;
 
 import static org.junit.Assert.*;
 
@@ -7,8 +7,6 @@ import java.util.HashMap;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-
-import sym_derivation.symderivation.SymFunction;
 
 public class ParseTest {
 	private SymFunction testf;

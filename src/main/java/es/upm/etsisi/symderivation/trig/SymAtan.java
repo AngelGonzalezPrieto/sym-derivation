@@ -1,14 +1,14 @@
-package sym_derivation.symderivation.trig;
+package es.upm.etsisi.symderivation.trig;
 
 import java.util.HashMap;
 
-import sym_derivation.symderivation.SymFunction;
-import sym_derivation.symderivation.constant.SymOne;
-import sym_derivation.symderivation.constant.SymZero;
-import sym_derivation.symderivation.arith.SymInv;
-import sym_derivation.symderivation.arith.SymPowNumeric;
-import sym_derivation.symderivation.arith.SymProd;
-import sym_derivation.symderivation.arith.SymSum;
+import es.upm.etsisi.symderivation.arith.SymPowNumeric;
+import es.upm.etsisi.symderivation.arith.SymProd;
+import es.upm.etsisi.symderivation.SymFunction;
+import es.upm.etsisi.symderivation.constant.SymOne;
+import es.upm.etsisi.symderivation.constant.SymZero;
+import es.upm.etsisi.symderivation.arith.SymInv;
+import es.upm.etsisi.symderivation.arith.SymSum;
 
 /**
  * Inverse of the tan function (arctan function).

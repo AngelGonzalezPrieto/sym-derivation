@@ -1,4 +1,4 @@
-package sym_derivation.sym_derivation;
+package es.upm.etsisi.symderivation;
 
 import static org.junit.Assert.*;
 
@@ -8,22 +8,20 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.hamcrest.CoreMatchers.instanceOf;
 
-import sym_derivation.symderivation.SymFunction;
-import sym_derivation.symderivation.SymVar;
-import sym_derivation.symderivation.arith.SymInv;
-import sym_derivation.symderivation.arith.SymPowNumeric;
-import sym_derivation.symderivation.arith.SymProd;
-import sym_derivation.symderivation.arith.SymSubs;
-import sym_derivation.symderivation.arith.SymSum;
-import sym_derivation.symderivation.arith.SymUnaryMinus;
-import sym_derivation.symderivation.constant.SymConstant;
-import sym_derivation.symderivation.constant.SymOne;
-import sym_derivation.symderivation.constant.SymZero;
-import sym_derivation.symderivation.trascendent.SymExp;
-import sym_derivation.symderivation.trascendent.SymLog;
-import sym_derivation.symderivation.trig.SymAtan;
-import sym_derivation.symderivation.trig.SymCos;
-import sym_derivation.symderivation.trig.SymSin;
+import es.upm.etsisi.symderivation.arith.SymInv;
+import es.upm.etsisi.symderivation.arith.SymPowNumeric;
+import es.upm.etsisi.symderivation.arith.SymProd;
+import es.upm.etsisi.symderivation.arith.SymSubs;
+import es.upm.etsisi.symderivation.arith.SymSum;
+import es.upm.etsisi.symderivation.arith.SymUnaryMinus;
+import es.upm.etsisi.symderivation.constant.SymConstant;
+import es.upm.etsisi.symderivation.constant.SymOne;
+import es.upm.etsisi.symderivation.constant.SymZero;
+import es.upm.etsisi.symderivation.trascendent.SymExp;
+import es.upm.etsisi.symderivation.trascendent.SymLog;
+import es.upm.etsisi.symderivation.trig.SymAtan;
+import es.upm.etsisi.symderivation.trig.SymCos;
+import es.upm.etsisi.symderivation.trig.SymSin;
 
 public class DiffTest {
 

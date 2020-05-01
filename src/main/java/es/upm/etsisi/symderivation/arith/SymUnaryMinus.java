@@ -1,27 +1,27 @@
-package sym_derivation.symderivation.trig;
+package es.upm.etsisi.symderivation.arith;
 
 import java.util.HashMap;
 
-import sym_derivation.symderivation.SymFunction;
-import sym_derivation.symderivation.arith.SymProd;
-import sym_derivation.symderivation.constant.SymZero;
+import es.upm.etsisi.symderivation.SymFunction;
+import es.upm.etsisi.symderivation.constant.SymZero;
 
 /**
- * Sine function.
+ * Additive inverse of a symbolic function.
+ * It is an unary operand.
  * 
- * Token notation: sin.
+ * Token notation: --.
  * 
  * @author Angel Gonzalez-Prieto
  *
  */
-public class SymSin extends SymFunction{
+public class SymUnaryMinus extends SymFunction {
 	SymFunction arg;
 	
-	public SymSin(SymFunction arg) {
-		this.arg = arg;
+	public SymUnaryMinus(SymFunction arg) {
+		this.arg=arg;
 	}
 
-	public Double eval(HashMap<String, Double>  param) {
+	public Double eval(HashMap<String, Double> param) {
 		Double argValue = arg.eval(param);
 		
 		if(argValue == null) {
@@ -31,7 +31,7 @@ public class SymSin extends SymFunction{
 		if(argValue.isNaN()) {
 			return Double.NaN;
 		}else {
-			return Math.sin(argValue);
+			return -argValue;
 		}
 	}
 
@@ -40,21 +40,23 @@ public class SymSin extends SymFunction{
 		if(dif instanceof SymZero) {
 			return new SymZero();
 		}
-		return new SymProd(new SymCos(arg), dif);
+		
+		return new SymUnaryMinus(dif);
 	}
-	
+
 	@Override
 	public String toInfix() {
-		return "sin(" + arg.toInfix() + ")";
+		return "-(" + arg.toInfix() + ")";
 	}
 	
 	@Override
 	public String toJavaCode() {
-		return "Math.sin(" + arg.toJavaCode() + ")";
+		return "-(" + arg.toJavaCode() + ")";
 	}
 
 	@Override
 	public int getDepth() {
 		return arg.getDepth()+1;
 	}
+
 }

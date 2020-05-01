@@ -1,8 +1,8 @@
-package sym_derivation.symderivation.constant;
+package es.upm.etsisi.symderivation.constant;
 
 import java.util.HashMap;
 
-import sym_derivation.symderivation.SymFunction;
+import es.upm.etsisi.symderivation.SymFunction;
 
 /**
  * Constant symbolic functions. Any real value
@@ -13,7 +13,7 @@ import sym_derivation.symderivation.SymFunction;
  * @author Angel Gonzalez-Prieto
  *
  */
-public class SymConstant extends SymFunction{
+public class SymConstant extends SymFunction {
 	
 	double value;
 	

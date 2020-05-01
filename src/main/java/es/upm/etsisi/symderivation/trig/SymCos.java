@@ -1,23 +1,24 @@
-package sym_derivation.symderivation.trascendent;
+package es.upm.etsisi.symderivation.trig;
 
 import java.util.HashMap;
 
-import sym_derivation.symderivation.SymFunction;
-import sym_derivation.symderivation.constant.SymZero;
-import sym_derivation.symderivation.arith.SymProd;
+import es.upm.etsisi.symderivation.SymFunction;
+import es.upm.etsisi.symderivation.arith.SymUnaryMinus;
+import es.upm.etsisi.symderivation.constant.SymZero;
+import es.upm.etsisi.symderivation.arith.SymProd;
 
 /**
- * Exponential function with base e.
+ * Cosine function.
  * 
- * Token notation: exp.
+ * Token notation: cos.
  * 
  * @author Angel Gonzalez-Prieto
  *
  */
-public class SymExp extends SymFunction{	
+public class SymCos extends SymFunction{	
 	SymFunction arg;
 	
-	public SymExp(SymFunction arg) {
+	public SymCos(SymFunction arg) {
 		this.arg = arg;
 	}
 
@@ -31,7 +32,7 @@ public class SymExp extends SymFunction{
 		if(argValue.isNaN()) {
 			return Double.NaN;
 		}else {
-			return Math.exp(argValue);
+			return Math.cos(argValue);
 		}
 	}
 
@@ -40,18 +41,17 @@ public class SymExp extends SymFunction{
 		if(dif instanceof SymZero) {
 			return new SymZero();
 		}
-		
-		return new SymProd(new SymExp(arg), dif);
+		return new SymUnaryMinus(new SymProd(new SymSin(arg), dif));
 	}
-
+	
 	@Override
 	public String toInfix() {
-		return "exp(" + arg.toInfix() + ")";
+		return "cos(" + arg.toInfix() + ")";
 	}
-
+	
 	@Override
 	public String toJavaCode() {
-		return "Math.exp(" + arg.toJavaCode() + ")";
+		return "Math.cos(" + arg.toJavaCode() + ")";
 	}
 
 	@Override

@@ -1,10 +1,10 @@
-package sym_derivation.symderivation.arith;
+package es.upm.etsisi.symderivation.arith;
 
 import java.util.HashMap;
 
-import sym_derivation.symderivation.SymFunction;
-import sym_derivation.symderivation.constant.SymConstant;
-import sym_derivation.symderivation.constant.SymZero;
+import es.upm.etsisi.symderivation.SymFunction;
+import es.upm.etsisi.symderivation.constant.SymConstant;
+import es.upm.etsisi.symderivation.constant.SymZero;
 
 /**
  * Pow function with only numerical exponents

@@ -1,11 +1,11 @@
-package sym_derivation.symderivation.arith;
+package es.upm.etsisi.symderivation.arith;
 
 import java.util.HashMap;
 
-import sym_derivation.symderivation.SymFunction;
-import sym_derivation.symderivation.constant.SymOne;
-import sym_derivation.symderivation.constant.SymZero;
-import sym_derivation.symderivation.trascendent.SymLog;
+import es.upm.etsisi.symderivation.SymFunction;
+import es.upm.etsisi.symderivation.constant.SymOne;
+import es.upm.etsisi.symderivation.constant.SymZero;
+import es.upm.etsisi.symderivation.trascendent.SymLog;
 
 /**
  * Pow function. Any symbolic function is
@@ -16,7 +16,7 @@ import sym_derivation.symderivation.trascendent.SymLog;
  * @author Angel Gonzalez-Prieto
  *
  */
-public class SymPow extends SymFunction{
+public class SymPow extends SymFunction {
 	private SymFunction base;
 	private SymFunction pow;
 	

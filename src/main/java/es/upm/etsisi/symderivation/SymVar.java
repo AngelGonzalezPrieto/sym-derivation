@@ -1,9 +1,9 @@
-package sym_derivation.symderivation;
+package es.upm.etsisi.symderivation;
 
 import java.util.HashMap;
 
-import sym_derivation.symderivation.constant.SymOne;
-import sym_derivation.symderivation.constant.SymZero;
+import es.upm.etsisi.symderivation.constant.SymOne;
+import es.upm.etsisi.symderivation.constant.SymZero;
 
 /**
  * Symbolic variable of a symbolic function.

@@ -1,4 +1,4 @@
-package sym_derivation.symderivation.constant;
+package es.upm.etsisi.symderivation.constant;
 
 /**
  * Constant symbolic functions with value 0.

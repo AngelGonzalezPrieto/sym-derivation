@@ -1,6 +1,6 @@
-package sym_derivation.symderivation.arith;
+package es.upm.etsisi.symderivation.arith;
 
-import sym_derivation.symderivation.SymFunction;
+import es.upm.etsisi.symderivation.SymFunction;
 
 /**
  * Multiplicative inverse function i.e. -^(-1).

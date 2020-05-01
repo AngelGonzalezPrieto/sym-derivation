@@ -1,11 +1,11 @@
-package sym_derivation.symderivation.trascendent;
+package es.upm.etsisi.symderivation.trascendent;
 
 import java.util.HashMap;
 
-import sym_derivation.symderivation.SymFunction;
-import sym_derivation.symderivation.constant.SymZero;
-import sym_derivation.symderivation.arith.SymInv;
-import sym_derivation.symderivation.arith.SymProd;
+import es.upm.etsisi.symderivation.SymFunction;
+import es.upm.etsisi.symderivation.arith.SymProd;
+import es.upm.etsisi.symderivation.constant.SymZero;
+import es.upm.etsisi.symderivation.arith.SymInv;
 
 /**
  * Natural logarithm function (with base e).
@@ -15,7 +15,7 @@ import sym_derivation.symderivation.arith.SymProd;
  * @author Angel Gonzalez-Prieto
  *
  */
-public class SymLog extends SymFunction{	
+public class SymLog extends SymFunction {
 	SymFunction arg;
 	
 	private static double THRESHOLD = 10e-15;
