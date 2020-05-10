@@ -39,7 +39,7 @@ public abstract class SymFunction {
 	 * Computes the derivative of the symbolic function with
 	 * respect to the variable var.
 	 * 
-	 * @param param Variable on which the derivative
+	 * @param var Variable on which the derivative
 	 * will be computed.
 	 * @return Symbolic function representing the
 	 * computed derivative. If var is not a parameter
